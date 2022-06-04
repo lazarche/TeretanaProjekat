@@ -33,7 +33,10 @@ public class Lokal {
     }
 
     public Osoblje vratiZaposlenog(Osoblje zaposlen) {
-        return zaposleni.get(zaposleni.indexOf(zaposlen));
+        int index = zaposleni.indexOf(zaposlen);
+        if(index == -1)
+            return null;
+        return zaposleni.get(index);
     }
 
     public ArrayList<Osoblje> vratiZaposlene() {
@@ -51,7 +54,10 @@ public class Lokal {
     }
 
     public Grupa vratiGrupu(Grupa grupa) {
-        return grupe.get(grupe.indexOf(grupa));
+        int index = grupe.indexOf(grupa);
+        if(index == -1)
+            return null;
+        return grupe.get(index);
     }
 
     public ArrayList<Grupa> vratiGrupe() { 

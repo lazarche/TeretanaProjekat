@@ -30,11 +30,19 @@ public class Grupa {
         return this.ucesnici.remove(korisnik);
     }
 
-    public Korisnik vratiGrupu(Korisnik korisnik) {
-        return ucesnici.get(ucesnici.indexOf(korisnik));
+    public Korisnik vratiKorisnika(Korisnik korisnik) {
+        int index = ucesnici.indexOf(korisnik);
+        if(index == -1)
+            return null;
+        return ucesnici.get(index);
     }
 
-    public ArrayList<Korisnik> vratiGrupe() {
+    public ArrayList<Korisnik> vratiKorisnike() {
         return ucesnici;
+    }
+
+    @Override
+    public String toString() {
+        return "GRUPA: " + vrstaTreninga + " " + vreme;
     }
 }

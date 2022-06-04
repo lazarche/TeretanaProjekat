@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class Korisnik {
@@ -11,7 +12,9 @@ public class Korisnik {
     String email;
     String datumRodjenja;
 
-    public Korisnik(Teretana teretana, String ime, String prezime, String jmbg, String email, String datumRodjenja) {
+    long id;
+
+    public Korisnik(Teretana teretana, String ime, String prezime, String jmbg, String email, String datumRodjenja, long id) {
         this.teretana = teretana;
         grupe = new ArrayList<Grupa>();
 
@@ -20,7 +23,10 @@ public class Korisnik {
         this.jmbg = jmbg;
         this.email = email;
         this.datumRodjenja = datumRodjenja;
+        this.id = id;
 
+        clanarina  = new Clanarina(new Date(1));
+        clanarina.UplatiClanarinu(1);
     }
 
     public String getIme() { return ime; }
@@ -28,6 +34,7 @@ public class Korisnik {
     public String getJmbg() { return jmbg; }
     public String getEmail() { return email; }
     public String getDatumRodjenja() { return datumRodjenja; }
+    public long getId() { return id; }
 
 
     public void DodajGrupu(Grupa grupa) {
@@ -39,7 +46,10 @@ public class Korisnik {
     }
 
     public Grupa vratiGrupu(Grupa grupa) {
-        return grupe.get(grupe.indexOf(grupa));
+        int index = grupe.indexOf(grupa);
+        if(index == -1)
+            return null;
+        return grupe.get(index);
     }
 
     public ArrayList<Grupa> vratiGrupe() {
@@ -47,9 +57,8 @@ public class Korisnik {
     }
 
     public String toString() {
-        return ime + " " + prezime + " JMBG: " + jmbg + " Email: " + email + " Datum Rodjenja: " + datumRodjenja;
+        return ime + " " + prezime + " JMBG: " + jmbg + " Email: " + email + " Datum Rodjenja: " + datumRodjenja + " id:" + id;
     }
-
 
     public Clanarina getClanarina() { return clanarina; }
 
@@ -58,14 +67,14 @@ public class Korisnik {
         if( o == this)
             return true;
 
-        if( !(o instanceof Osoblje)) 
+        if( !(o instanceof Korisnik)) 
             return false;
 
         Korisnik temp = (Korisnik) o;
 
-        if(!temp.getJmbg().equals(this.getJmbg()))
-            return false;
+        if(temp.getId() == id)
+            return true;
 
-        return true;
+        return false;
     }
 }

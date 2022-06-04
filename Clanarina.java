@@ -2,22 +2,16 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-enum VrstaClanarine{
-    obicnaClanarina, //bez mogucnosti grupnih treninga
-    grupnaClanarina //sa grupnim treninzima
-}
+
 
 
 public class Clanarina {
-    VrstaClanarine vrstaClanarine;
+
     Date datumIsteka;
 
-    public Clanarina(VrstaClanarine vrstaClanarine, Date datumIsteka) {
-        this.vrstaClanarine = vrstaClanarine;
+    public Clanarina(Date datumIsteka) {
         this.datumIsteka = datumIsteka;
     }
-
-    public VrstaClanarine getVrstaClanarine() { return vrstaClanarine; }
     public Date getDatumIsteka() { return datumIsteka; }
 
     public boolean DaLiClanarinaTraje() {
@@ -32,7 +26,7 @@ public class Clanarina {
 
         LocalDate ld = datumIsteka.toLocalDate();
 
-        ld.plusMonths(3);
+        ld = ld.plusMonths(brojUplacenihMeseci);
 
         datumIsteka = Date.valueOf(ld);
     }
