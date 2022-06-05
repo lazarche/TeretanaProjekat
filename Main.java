@@ -14,7 +14,6 @@ public class Main {
         BazaKontroler.UcitajLokale();
         BazaKontroler.UcitajKorisnike(); //Korisnici - clanarina
         for (Lokal lokal : teretana.vratiLokale()) {
-            System.out.println("Lokali: " + lokal.getAdresa());
             BazaKontroler.UcitajOsoblje(lokal);
             BazaKontroler.UcitajTrenere(lokal);
             BazaKontroler.UcitajGrupe(lokal);
@@ -23,10 +22,10 @@ public class Main {
 
         //Setovanje trenutno lokala, u pravoj aplikaciji to bi bio argument za pozivanje args
         lokalni = teretana.vratiLokal(new Lokal(teretana, "adresa", 1, "radnoVreme"));
-        System.out.println(lokalni.getAdresa());
 
-        System.out.println("~~~~TeretanaProgram2000~~~~~");
+        System.out.println("~~~~TeretanaProgram~~~~~");
         System.out.println("DOBRODOSLI!");
+        Svetovid.in.readLine();
         boolean kraj = false;
         while(!kraj) {
             kraj = Menu();
@@ -34,13 +33,22 @@ public class Main {
     }
 
     public static boolean Menu() {
+        clearConsole();
+        System.out.println("~~~~~MENU~~~~~");
         System.out.println("1. Dodaj novog korisnika");
         System.out.println("2. Uplati clanarinu korisniku");
         System.out.println("3. Ubaci korisnika u grupu");
-        System.out.println("4. Izlaz");
-        char unos = Svetovid.in.readChar(":");
+        System.out.println("4. Napravi novu grupu");
+        System.out.println("5. Prikazi sve korisnike");
+        System.out.println("6. Izlaz");
+        char unos = 'z';
+        try {
+            unos = Svetovid.in.readChar(":");
+        } catch (Exception e) {
+        }
+        
+        clearConsole();
 
-        //clearConsole();
         switch(unos) {
             case '1':
                 DodajNovogClana();
@@ -51,19 +59,37 @@ public class Main {
             case '3':
                 DodajKorisnikaUGrupu();
             break;
-
             case '4':
+                System.out.println("Opcija ce biti dodata u sledecoj iteraciji");
+            break;
+            case '5':
+                PrikaziSveKorisnike();
+            break;
+
+            case '6':
                 return true;
 
             default:
                 System.out.println("Pogresan unos! Probajte opet");
+                Svetovid.in.readLine();
             break;
         }
         return false;
     }
 
+    public static void PrikaziSveKorisnike() {
+        System.out.println("Svi korisnici teretane: ");
+        System.out.println("------------------------------");
+        for (Korisnik korisnik : teretana.vratiKorisnike()) {
+            System.out.println(korisnik);
+        }
+        System.out.println("------------------------------");
+        Svetovid.in.readLine();
+    }
+
     public static void DodajKorisnikaUGrupu() {
         ArrayList<Grupa> grupe = GrupaKontroler.VratiSveGrupe(lokalni);
+        System.out.println("~~~~~Dodavanje korisnika u grupu~~~~~");
         System.out.println("Izaberi grupu u koju zelite da ubacite korisnika: ");
         int br = 0;
         for (Grupa grupa : grupe) {
@@ -117,7 +143,7 @@ public class Main {
     }
 
     public static void DodajNovogClana() {
-        System.out.println("~~~~Unos novog clana~~~~");
+        System.out.println("~~~~~Unos novog clana~~~~~");
         System.out.println("Novi can uplacuje clanarinu u iznosu od jednog meseca");
         String ime = UnosStringa("Unesi ime korisnika: ");
         String prezime = UnosStringa("Unesi prezime korisnika: ");
@@ -142,6 +168,7 @@ public class Main {
 
     public static void UplatiClanarinu() {
         System.out.println("ps. ovde treba da ide barkod ili nfc skener :(");
+        System.out.println("~~~~~Uplacivanje clanarine~~~~~");
         Korisnik pronadji;
         //da li korisnik postoji
         while(true) {
@@ -182,7 +209,7 @@ public class Main {
     }
 
 
-    //#region Regalacija unosa
+    //#region Regulacija unosa
 
     public static String UnosStringa(String poruka) {
         String polje;

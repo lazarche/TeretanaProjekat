@@ -110,7 +110,7 @@ class BazaKontroler {
         CachedRowSet _temp = returnSet("SELECT * FROM korisnik");
         try {
             while(_temp.next()) {
-                Korisnik novi = new Korisnik(Main.teretana, _temp.getString(1), _temp.getString(2), _temp.getString(3), _temp.getString(4), _temp.getString(5), _temp.getLong(6));
+                Korisnik novi = new Korisnik(Main.teretana, _temp.getString(2), _temp.getString(3), _temp.getString(1), _temp.getString(4), _temp.getString(5), _temp.getLong(6));
                 
                 //Ucitaj clanarinu
                 CachedRowSet _clanarina = returnSet("SELECT datumIsteka FROM clanarina WHERE idKorisnika = " + novi.getId() +";");
