@@ -1,7 +1,15 @@
+package gui;
 import java.util.ArrayList;
 
+import org.svetovid.Svetovid;
+
+import control.GrupaKontroler;
+import control.KorisnikKontroler;
+import control.bazapodataka.BazaKontroler;
+import osnova.*;
+
 public class Main {
-    static Teretana teretana;
+    public static Teretana teretana;
     static Lokal lokalni;
     static BazaKontroler bk;
     public static void main(String[] args) {

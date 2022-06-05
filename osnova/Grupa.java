@@ -1,3 +1,4 @@
+package osnova;
 import java.util.ArrayList;
 
 public class Grupa {

@@ -1,5 +1,11 @@
+package control;
+
 import java.sql.SQLException;
 import java.util.Calendar;
+
+import control.bazapodataka.BazaKontroler;
+import osnova.Korisnik;
+import osnova.Teretana;
 
 public class KorisnikKontroler {
     public static long dodajKorisnika(Teretana teretana,String ime, String prezime, String jmbg, String email, String datumRodjenja) {

@@ -1,3 +1,5 @@
+package osnova;
+
 public class Osoblje {
     String ime;
     String prezime;

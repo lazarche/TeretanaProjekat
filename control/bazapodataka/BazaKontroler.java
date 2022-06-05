@@ -1,9 +1,13 @@
+package control.bazapodataka;
+
 import java.sql.*;
-import java.util.ArrayList;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
+
+import gui.Main;
+import osnova.*;
 
 class DBConnection {		
 	public static Connection getConnection() {
@@ -31,7 +35,7 @@ class DBConnection {
 	}
 }
 
-class BazaKontroler {
+public class BazaKontroler {
     
     static Connection con;
 
@@ -115,7 +119,7 @@ class BazaKontroler {
                 //Ucitaj clanarinu
                 CachedRowSet _clanarina = returnSet("SELECT datumIsteka FROM clanarina WHERE idKorisnika = " + novi.getId() +";");
                 while(_clanarina.next()) {
-                    novi.getClanarina().datumIsteka = _clanarina.getDate(1);
+                    novi.getClanarina().setDatumIsteka(_clanarina.getDate(1));
                 }
 
 

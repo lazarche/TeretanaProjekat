@@ -1,5 +1,12 @@
+package control;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import control.bazapodataka.BazaKontroler;
+import osnova.Grupa;
+import osnova.Korisnik;
+import osnova.Lokal;
 
 public class GrupaKontroler {
     public static ArrayList<Grupa> VratiSveGrupe(Lokal lokal) {

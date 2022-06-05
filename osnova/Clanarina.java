@@ -1,3 +1,5 @@
+package osnova;
+
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -13,6 +15,7 @@ public class Clanarina {
         this.datumIsteka = datumIsteka;
     }
     public Date getDatumIsteka() { return datumIsteka; }
+    public void setDatumIsteka(Date di) { datumIsteka = di; }
 
     public boolean DaLiClanarinaTraje() {
         java.sql.Date cur = new java.sql.Date(Calendar.getInstance().getTime().getTime());
