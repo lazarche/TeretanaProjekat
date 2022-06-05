@@ -7,20 +7,21 @@ public class Lokal {
     ArrayList<Grupa> grupe;
     
     String adresa;
-    String naziv;
+    int id;
     String radnoVreme;
 
-    public Lokal(Teretana teretana, String adresa, String naziv, String radnoVreme) {
+    public Lokal(Teretana teretana, String adresa, int id, String radnoVreme) {
         this.teretana = teretana;
         this.adresa = adresa;
-        this.naziv = naziv;
+        this.id = id;
         this.radnoVreme = radnoVreme;
 
         zaposleni = new ArrayList<Osoblje>();
+        grupe = new ArrayList<Grupa>();
     }
 
     public String getAdresa() { return adresa; }
-    public String getNaziv() { return naziv; }
+    public int getId() { return id; }
     public String getRadnoVreme() { return radnoVreme; }
 
     //~~~Zaposleni~~~~~
@@ -76,9 +77,7 @@ public class Lokal {
         Lokal temp = (Lokal) o;
 
 
-        if(!temp.getNaziv().equals(this.getNaziv()))
-            return false;
-        if(!temp.getAdresa().equals(this.getAdresa()))
+        if(temp.getId() != this.getId())
             return false;
 
         return true;

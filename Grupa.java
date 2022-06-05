@@ -6,21 +6,23 @@ public class Grupa {
     ArrayList<Korisnik> ucesnici;
 
     String vreme;
-    int maxBrojKorisnika;
+    int id;
     String vrstaTreninga;
 
-    public Grupa(Trener trener, Lokal lokal, String vreme, int maxBrojKorisnika, String vrstaTreninga) {
+    public Grupa(Trener trener, Lokal lokal, String vreme, int id, String vrstaTreninga) {
         this.trener = trener;
         this.lokal = lokal;
         this.vreme = vreme;
-        this.maxBrojKorisnika = maxBrojKorisnika;
+        this.id = id;
         this.vrstaTreninga = vrstaTreninga;
+
+        ucesnici = new ArrayList<Korisnik>();
     }
 
     public Trener getTrener() { return trener; }
     public Lokal getLokal() { return lokal; }
     public String getVreme() { return vreme; }
-    public int MaxBrojKorisnika() { return maxBrojKorisnika; }
+    public int getId() { return id; }
 
     public void DodajUcesnika(Korisnik korisnik) {
         ucesnici.add(korisnik);

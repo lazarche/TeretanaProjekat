@@ -3,24 +3,28 @@ import java.util.ArrayList;
 public class Main {
     static Teretana teretana;
     static Lokal lokalni;
+    static BazaKontroler bk;
     public static void main(String[] args) {
         teretana = new Teretana();
+        bk = new BazaKontroler();
 
-
-        //TEST
-        teretana.dodajLokal(new Lokal(teretana, "Neka tamo", "1.", "7-23"));
-
+        //Ucitavanje
         
-        //Trenutna pozicija bi se setovali prilikom namestanja programa/ ili bi se ucitavala
-        lokalni = teretana.vratiLokale().get(0);
-        Trener t = new Trener("ime", "prezime", "jmbg", "email", "datumRodjenja", "radnoMesto", lokalni);
-        lokalni.DodajGrupu(new Grupa(t, lokalni, "vreme", 2, "vrstaTreninga"));
-        lokalni.DodajGrupu(new Grupa(t, lokalni, "pravo vreme", 5, "jos bolja grupa"));
+        //Ucitaj lokale
+        BazaKontroler.UcitajLokale();
+        BazaKontroler.UcitajKorisnike(); //Korisnici - clanarina
+        for (Lokal lokal : teretana.vratiLokale()) {
+            System.out.println("Lokali: " + lokal.getAdresa());
+            BazaKontroler.UcitajOsoblje(lokal);
+            BazaKontroler.UcitajTrenere(lokal);
+            BazaKontroler.UcitajGrupe(lokal);
+        }
+        
 
-        //TEST
+        //Setovanje trenutno lokala, u pravoj aplikaciji to bi bio argument za pozivanje args
+        lokalni = teretana.vratiLokal(new Lokal(teretana, "adresa", 1, "radnoVreme"));
+        System.out.println(lokalni.getAdresa());
 
-
-        //TO-DO Ucitavanje
         System.out.println("~~~~TeretanaProgram2000~~~~~");
         System.out.println("DOBRODOSLI!");
         boolean kraj = false;
@@ -55,20 +59,16 @@ public class Main {
                 System.out.println("Pogresan unos! Probajte opet");
             break;
         }
-
-        for (Korisnik korisnik : teretana.vratiKorisnike()) {
-            System.out.println(korisnik.toString());
-            System.out.println(korisnik.getClanarina().getDatumIsteka());
-        }
-
         return false;
     }
 
     public static void DodajKorisnikaUGrupu() {
-        ArrayList<Grupa> grupe = GrupaKontroler.VratiSveGrupe(teretana.vratiLokal(lokalni));
+        ArrayList<Grupa> grupe = GrupaKontroler.VratiSveGrupe(lokalni);
         System.out.println("Izaberi grupu u koju zelite da ubacite korisnika: ");
+        int br = 0;
         for (Grupa grupa : grupe) {
-            System.out.println("0. " + grupa.toString());
+            System.out.println(br +". " + grupa.toString());
+            br++;
         }
 
         String unos;
@@ -107,7 +107,12 @@ public class Main {
             System.out.println("Korisnik nije pronadjen.");
         }
 
-        GrupaKontroler.dodajKorisnikaUGrupu(pronadji, grupe.get(i));
+        if(GrupaKontroler.dodajKorisnikaUGrupu(pronadji, grupe.get(i)))
+            System.out.println("Korisnik je dodat u grupu");
+            else {
+            System.out.println("Korisnik je vec u grupi");
+            Svetovid.in.readLine();
+            }
 
     }
 

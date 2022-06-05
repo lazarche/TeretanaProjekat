@@ -25,6 +25,7 @@ public class Osoblje {
     public String getDatumRodjenja() { return datumRodjenja; }
     public String getRadnoMesto() { return radnoMesto; }
     public Lokal getLokal() { return lokal; }
+    public void setLokal(Lokal l) { this.lokal = l;}
 
     public String toString() {
         return ime + " " + prezime + " Radno mesto: " + radnoMesto + " JMBG: " + jmbg + " Email: " + email + " Datum Rodjenja: " + datumRodjenja;

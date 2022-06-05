@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 
 public class Clanarina {
-
+    
     Date datumIsteka;
 
     public Clanarina(Date datumIsteka) {

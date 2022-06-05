@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "d:\\Fakultet\\Neki Sajt\\svetovid-lib-install\\svetovid-lib.jar"
+        "d:\\Fakultet\\Neki Sajt\\svetovid-lib-install\\svetovid-lib.jar",
+        "mysql-connector.jar"
     ]
 }

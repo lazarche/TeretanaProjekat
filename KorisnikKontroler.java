@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.Calendar;
 
 public class KorisnikKontroler {
@@ -7,6 +8,12 @@ public class KorisnikKontroler {
         Korisnik novi = new Korisnik(teretana, ime, prezime, jmbg, email, datumRodjenja, cur.getTime());
 
         teretana.dodajKorisnika(novi);
+
+        try {
+            BazaKontroler.SacuvajKorisnika(novi);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         
         return cur.getTime();
     }
@@ -18,6 +25,7 @@ public class KorisnikKontroler {
 
     public static void uplatiClanarinu(Korisnik korisnik, int meseci) {
         korisnik.getClanarina().UplatiClanarinu(meseci);
+        BazaKontroler.SacuvajUplatu(korisnik);
     }
     
 }
